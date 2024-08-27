@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Customer Registration{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3 bg-dark text-white rounded " style="box-shadow: 0px 0px 10px 10px inset grey">
+   <h3  class="text-uppercase fw-bold text-center my-3">Customer Registration</h3>
+   <hr>
+
+   <form action="" method="post" novalidate class="shadow p-5">
+  {% if messages %}
+  {% for msg in messages %}
+  <p {% if msg.tags %} class='alert alert-{{msg.tags}} mb-5' {% endif %} >{{msg}}</p>
+  {% endfor %}
+  {% endif %}
+
+      {% csrf_token %}
+    {% for fm in form %}
+    <div class="form-group mb-3">
+    {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+    </div>
+    {% endfor %}
+    <input type="submit" value="submit" class='btn btn-primary'>
+   </form>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
